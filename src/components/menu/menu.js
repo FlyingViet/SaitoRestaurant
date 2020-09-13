@@ -24,9 +24,9 @@ const Menu = () => {
     <section className="menu">
       <h2>OUR MENUS</h2>
       <ul className="menu-headers">
-        <li className="menu-header" onClick={() => setMenuCategory('sushi')}>Sushi Rolls</li>
+        <li className="menu-header" onClick={() => setMenuCategory('sushi')}>Sushi</li>
         <li className="menu-header" onClick={() => setMenuCategory('hibachi')}>Hibachi</li>
-        <li className="menu-header" onClick={() => setMenuCategory('specialKidsSides')}>Specials/Sides/Kids</li>
+        <li className="menu-header" onClick={() => setMenuCategory('specialKidsSides')}>Specials</li>
         <li className="menu-header" onClick={() => setMenuCategory('sauces')} >Sauces</li>
       </ul>
       <SelectedCategory />
