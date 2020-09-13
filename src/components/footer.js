@@ -18,6 +18,7 @@ const Footer = () => {
         <div className="contact">
           <h3>CONTACT</h3>
           <span>+1 (901) 373-1957</span>
+          <span>saito.memphis@gmail.com</span>
         </div>
       </section>
       <p>Built by
