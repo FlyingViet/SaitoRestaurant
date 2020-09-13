@@ -33,7 +33,7 @@ return (
     </section>
     <div className="parallax"></div>
     <section className="container">
-      <Menu />
+      <Menu menu1={data.menu1.childImageSharp.fluid} menu2={data.menu2.childImageSharp.fluid}/>
       <Instagram />
     </section>
     {typeof window !== 'undefined' &&
@@ -70,6 +70,12 @@ export const pageQuery = graphql`
       ...fluidImage
     }
     sushi2: file(relativePath: { eq: "Sushi2.JPG" }) {
+      ...fluidImage
+    }
+    menu1: file(relativePath: { eq: "menu1.jpg" }) {
+      ...fluidImage
+    }
+    menu2: file(relativePath: { eq: "menu2.jpg" }) {
       ...fluidImage
     }
   }
