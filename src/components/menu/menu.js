@@ -4,28 +4,35 @@ import Sauces from './sauces'
 import SushiMenu from './sushi'
 import SpecialKidsSides from './sides'
 import EmptyMenu from './empty-menu'
-import Img from 'gatsby-image'
+import Appetizers from './appetizers'
 
 const Menu = () => {
   const [menuCategory, setMenuCategory] = useState('');
   let SelectedCategory;
   if (menuCategory === 'sushi') {
     SelectedCategory = SushiMenu
-  } else if (menuCategory === 'specialKidsSides') {
+  } 
+  else if (menuCategory === 'specialKidsSides') {
     SelectedCategory = SpecialKidsSides
-  } else if (menuCategory === 'hibachi') {
+  } 
+  else if (menuCategory === 'hibachi') {
     SelectedCategory = Hibachi
-  } else if (menuCategory === 'sauces') {
+  } 
+  else if (menuCategory === 'sauces') {
     SelectedCategory = Sauces
-  } else {
+  } 
+  else if (menuCategory === 'appetizers') {
+    SelectedCategory = Appetizers
+  }
+  else {
     SelectedCategory = EmptyMenu
   }
   
   return (
     <section className="menu">
-      <h2>Our Menu</h2>
       <h2>OUR MENUS</h2>
       <ul className="menu-headers">
+        <li className="menu-header" onClick={() => setMenuCategory('appetizers')}>Appetizers</li>
         <li className="menu-header" onClick={() => setMenuCategory('sushi')}>Sushi</li>
         <li className="menu-header" onClick={() => setMenuCategory('hibachi')}>Hibachi</li>
         <li className="menu-header" onClick={() => setMenuCategory('specialKidsSides')}>Specials</li>

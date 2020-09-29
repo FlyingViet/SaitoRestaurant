@@ -3,54 +3,35 @@ import React from 'react'
 
 const Hibachi = () => {
 
-  const hibachi = [
-    {id: 1, title: "Hibachi Fried Rice (Regular/Large)", price: "4.10/$8.00"},
-    {id: 2, title: "Hibachi Shrimp Fried Rice (Regular/Large)", price: "5.75/$11.40"},
-    {id: 3, title: "Hibachi Chicken Fried Rice (Regular/Large)", price: "5.15/$10.25"},
-    {id: 4, title: "Hibachi Chicken and Shrimp Mix Fried Rice (Regular/Large)", price: "7.75/$15.40"},
-    {id: 5, title: "Hibachi Steak Fried Rice (Regular/Large)", price: "8.00/$15.75"},
-    {id: 6, title: "Vegetable Tempura", price: "6.25"},
-    {id: 7, title: "Calamari Tempura", price: "7.00"},
-    {id: 8, title: "Shrimp Tempura", price: "8.00"},
-    {id: 9, title: "4 Piece Fried Egg Rolls", price: "4.50"},
-  ];
-
   const meals = [
-    {id: 1, title: "7 oz. Hibachi Chicken", price: "15.95+"},
-    {id: 2, title: "14 Piece Hibachi Shrimp", price: "19.95+"},
-    {id: 3, title: "Hibachi Scallops", price: "20.95+"},
-    {id: 4, title: "Filet Mignon", price: "19.95+"},
-    {id: 5, title: "Hibachi Salmon", price: "19.95+"},
-    {id: 6, title: "Vegetable Dinner", price: "13.25+"},
+    {id: 1, title: "Hibachi Chicken - 7 oz", price: "15.95"},
+    {id: 2, title: "Hibachi Shrimp - 14 pcs", price: "19.95"},
+    {id: 3, title: "Hibachi Scallops - 7 oz", price: "20.95"},
+    {id: 4, title: "Filet Mignon - 8 oz", price: "19.95"},
+    {id: 5, title: "Hibachi Salmon - 7 oz", price: "19.95"},
+    {id: 6, title: "Vegetable Dinner (No Shrimp)", price: "13.25"},
   ]
 
   const specialties = [
-    {id: 1, title: "Saito's Choice", price: "20.95+"},
-    {id: 2, title: "Saito's Delight", price: "20.95+"},
-    {id: 3, title: "Saito's Combination", price: "24.95+"},
-    {id: 4, title: "Saito Special", price: "31.95+"},
-    {id: 5, title: "Saito Trio", price: "31.95+"},
-    {id: 6, title: "Surf and Turf", price: "24.95+"},
-    {id: 7, title: "Ocean Combination", price: "33.95+"},
-    {id: 8, title: "Hibachi Lobster Tails", price: "31.95+"},
+    {id: 1, title: "Saito's Choice - 8 oz filet, 4 oz chicken", price: "20.95"},
+    {id: 2, title: "Saito's Delight - 7 oz chicken, 7 pcs shrimp", price: "20.95"},
+    {id: 3, title: "Saito's Combination - 7 pcs shrimp, 4 oz scallop, 4 oz calamari steak", price: "24.95"},
+    {id: 4, title: "Saito Special - 8 oz filet, 4 oz lobster tail", price: "31.95"},
+    {id: 5, title: "Saito Trio - 4 oz fillet, 7 pcs shrimp, 4 oz lobster tail", price: "31.95"},
+    {id: 6, title: "Surf and Turf - 7 pcs shrimp, 8 oz fillet", price: "24.95"},
+    {id: 7, title: "Ocean Combo - 4 oz lobster tail, 4 oz scallop, 7 pcs shrimp", price: "33.95"},
+    {id: 8, title: "Hibachi Lobster Dinner - 2 pcs, 4 oz lobster tails", price: "31.95"},
   ]
+
+  const kids = [
+    {id: 1, title: "Hibachi Chicken", price: "9.25"},
+    {id: 2, title: "Teriyaki Steak", price: "10.25"},
+    {id: 3, title: "Hibachi Shrimp", price: "11.25"},
+  ]
+
   return (
     <div>
-      <h3 className="sample">Hibachi Appetizers</h3>
-      <ul className="menu-items-grid">
-        {
-          hibachi.map((node) => {
-            return (
-              <li key={node.id} className="menu-item">
-                <h3>{node.title}</h3>
-                <span>${node.price}</span>
-              </li>
-            )
-          })
-        }
-      </ul>
-      <br/>
-      <h3 className="sample">Hibachi Meals</h3>
+      <h3 className="sample">Traditional</h3>
       <ul className="menu-items-grid">
         {
           meals.map((node) => {
@@ -64,10 +45,24 @@ const Hibachi = () => {
         }
       </ul>
       <br/>
-      <h3 className="sample">Specialties Hibachi Meals</h3>
+      <h3 className="sample">Specialties</h3>
       <ul className="menu-items-grid">
         {
           specialties.map((node) => {
+            return (
+              <li key={node.id} className="menu-item">
+                <h3>{node.title}</h3>
+                <span>${node.price}</span>
+              </li>
+            )
+          })
+        }
+      </ul>
+      <br/>
+      <h3 className="sample">Kids</h3>
+      <ul className="menu-items-grid">
+        {
+          kids.map((node) => {
             return (
               <li key={node.id} className="menu-item">
                 <h3>{node.title}</h3>

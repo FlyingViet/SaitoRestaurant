@@ -4,11 +4,11 @@
     text-decoration: none; /* no underline */
   }
   .menu-headers {
-    display: flex;
+    display: inline-block;
     list-style-type: none;
     margin-left: 0;
     justify-content: space-between;
-    
+    width: auto;
     @media screen and (min-width: 640px) {
       justify-content: unset;
       .menu-header:nth-child(n+2) {
@@ -19,7 +19,10 @@
       cursor: pointer;
       border-bottom: 1px solid #000;
       padding: 0;
+      padding-right: 10px;
       line-height: 20px;
+      float: left;
+      width: auto;
       @media screen and (min-width: 1024px) {
         font-size: $ms-size;
         line-height: $ms-size;
