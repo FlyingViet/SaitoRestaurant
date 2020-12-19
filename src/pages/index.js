@@ -39,8 +39,8 @@ return (
     {typeof window !== 'undefined' &&
       <LeafletMap
         position={[35.205189, -89.843314]} // Your Coordinates
-        zoom={17} // Zoom Level
-        markerText={"Saito Restaurant, 6600 Stage Rd # 101"} // Icon text
+        zoom={13} // Zoom Level
+        markerText={"Saito Restaurant 1, 6600 Stage Rd # 101, Memphis, TN 38134"} // Icon text
       />
     }
     <Footer />

@@ -17,12 +17,16 @@ class LeafletMap extends React.Component {
 
   static defaultProps = {
     position: [35.205189,-89.843314],
-    zoom: 17,
-    markerText: ""
+    zoom: 20,
+    markerText: "Saito 1"
   }
 
-  render() {
 
+  render() {
+    var saito2Props = {
+      position: [35.20474489378353, -89.73692327346642],
+      marketText: "Saito Restaurant 2, 9775 US-64 #103, Arlington, TN 38002"
+    }  
       return (
         <Map center={this.props.position} zoom={this.props.zoom}>
           <TileLayer
@@ -34,6 +38,9 @@ class LeafletMap extends React.Component {
             <Popup>{this.props.markerText}</Popup>
           </Marker>
           }
+          <Marker position={saito2Props.position}>
+            <Popup>{"Saito Restaurant 2, 9775 US-64 #103, Arlington, TN 38002"}</Popup>
+          </Marker>
         </Map>
       );
   }
