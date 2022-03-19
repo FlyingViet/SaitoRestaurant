@@ -34,7 +34,6 @@ return (
     <div className="parallax"></div>
     <section className="container">
       <Menu />
-      <Instagram />
     </section>
     {typeof window !== 'undefined' &&
       <LeafletMap
