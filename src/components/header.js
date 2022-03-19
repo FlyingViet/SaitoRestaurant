@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 const Header = ({ siteTitle }) => (
   <header>
     <span>{siteTitle}</span>
-    <span>Now at two locations!</span>
+    <span>Now at three locations!</span>
   </header>
 )
 

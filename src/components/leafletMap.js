@@ -27,6 +27,11 @@ class LeafletMap extends React.Component {
       position: [35.20474489378353, -89.73692327346642],
       marketText: "Saito Restaurant 2, 9775 US-64 #103, Arlington, TN 38002"
     }  
+
+    var saito3Props = {
+      position: [35.05308958022539, -89.73346294457404],
+      marketText: "Saito Restaurant 3, 2130 W Poplar, Suite 107, Collierville, TN 38017"
+    }
       return (
         <Map center={this.props.position} zoom={this.props.zoom}>
           <TileLayer
@@ -39,7 +44,10 @@ class LeafletMap extends React.Component {
           </Marker>
           }
           <Marker position={saito2Props.position}>
-            <Popup>{"Saito Restaurant 2, 9775 US-64 #103, Arlington, TN 38002"}</Popup>
+            <Popup>{saito2Props.marketText}</Popup>
+          </Marker>
+          <Marker position={saito3Props.position}>
+            <Popup>{saito3Props.marketText}</Popup>
           </Marker>
         </Map>
       );

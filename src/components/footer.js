@@ -16,6 +16,11 @@ const Footer = () => {
           <span>9775 US-64 #103, </span>
           <span>Arlington, TN 38002</span>
           <span>+1 (901) 590-2561</span>
+          &nbsp;
+          <span>Saito 3</span>
+          <span>2130 W Poplar, Suite 107 </span>
+          <span>Collierville, TN 38017</span>
+          <span>+1 (901) 854-0622</span>
         </div>
         <div className="hours">
           <h3>HOURS</h3>
