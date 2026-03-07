@@ -2,18 +2,31 @@
 * COLOURS *
 ***********/
 
-$green: #14302F;
-$background: #f7f2ea;
+$cream:       #faf7f2;
+$cream-dark:  #f0ebe1;
+$charcoal:    #1a1a1a;
+$charcoal-mid:#2e2e2e;
+$red:         #c8102e;
+$red-dark:    #a00d24;
+$gold:        #b8860b;
+$text:        #2e2e2e;
+$text-muted:  #6b6360;
+$border:      #ddd5c8;
+$white:       #ffffff;
+
+// Legacy alias used by existing code
+$green:       #14302F;
+$background:  $cream;
 
 /*************
 * FONT SIZES *
 *************/
-$xs-size: 10px;
-$s-size: 12px;
-$sm-size: 16px;
-$m-size: 18px;
-$ms-size: 20px;
-$ml-size: 26px;
-$l-size: 32px;
-$xl-size: 42px;
-$xxl-size: 54px;
+$xs-size:  10px;
+$s-size:   12px;
+$sm-size:  14px;
+$m-size:   16px;
+$ms-size:  18px;
+$ml-size:  24px;
+$l-size:   30px;
+$xl-size:  38px;
+$xxl-size: 52px;

@@ -1,5 +1,21 @@
 @import './variables/variables';
 
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  color: $text;
+  background-color: $background;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: $charcoal;
+  margin-top: 0;
+}
+
 @import './components/footer';
 @import './components/header';
 @import './components/instagram';

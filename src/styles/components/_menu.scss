@@ -1,51 +1,178 @@
 .menu {
-  a {
-    color: blue;
-    text-decoration: none; /* no underline */
-  }
-  .menu-headers {
-    display: inline-block;
-    list-style-type: none;
-    margin-left: 0;
-    justify-content: space-between;
-    width: auto;
-    @media screen and (min-width: 640px) {
-      justify-content: unset;
-      .menu-header:nth-child(n+2) {
-        margin-left: 20px;
-      }
-    }
-    .menu-header {
-      cursor: pointer;
-      border-bottom: 1px solid #000;
-      padding: 0;
-      padding-right: 10px;
-      line-height: 20px;
-      float: left;
-      width: auto;
-      @media screen and (min-width: 1024px) {
-        font-size: $ms-size;
-        line-height: $ms-size;
-      }
-    }
-    
-  }
-  .menu-items-grid {
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    margin: 0;
-    @media screen and (min-width:640px) {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto;
-    }
-    .menu-item {
-      padding-top: 15px;
+  padding: 80px 0 60px;
 
-      h3 {
-        margin-bottom: 0;
-      }
+  .menu-heading {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: $xl-size;
+      color: $charcoal;
+      margin-bottom: 8px;
     }
+  }
+
+  .menu-subheading {
+    color: $text-muted;
+    font-size: $ms-size;
+    margin: 0;
+  }
+}
+
+// ── Tabs ─────────────────────────────────────────────
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.menu-tab {
+  background: none;
+  border: 1px solid $border;
+  border-radius: 24px;
+  padding: 8px 22px;
+  font-size: $sm-size;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: $charcoal;
+    color: $charcoal;
+  }
+
+  &.active {
+    background-color: $charcoal;
+    border-color: $charcoal;
+    color: $white;
+  }
+}
+
+// ── Menu content ─────────────────────────────────────
+.menu-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.menu-note {
+  background-color: $cream-dark;
+  border-left: 3px solid $gold;
+  padding: 12px 16px;
+  font-size: $sm-size;
+  color: $text-muted;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+// ── Section ───────────────────────────────────────────
+.menu-section {
+  margin-bottom: 40px;
+}
+
+.menu-section-title {
+  font-size: $m-size;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $border;
+}
+
+// ── Items ─────────────────────────────────────────────
+.menu-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid $cream-dark;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .menu-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .menu-item-name {
+    font-size: $m-size;
+    color: $text;
+    font-weight: 500;
+  }
+
+  .menu-item-desc {
+    font-size: $sm-size;
+    color: $text-muted;
+  }
+
+  .menu-item-price {
+    font-size: $m-size;
+    font-weight: 600;
+    color: $charcoal;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+// ── Order section ──────────────────────────────────────
+.order-section {
+  text-align: center;
+  padding-top: 48px;
+  border-top: 1px solid $border;
+  margin-top: 8px;
+
+  h3 {
+    font-size: $ml-size;
+    color: $charcoal;
+    margin-bottom: 20px;
+  }
+}
+
+.order-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.order-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: $sm-size;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &.doordash {
+    background-color: #ff3008;
+    color: $white;
+  }
+
+  &.grubhub {
+    background-color: #f63440;
+    color: $white;
   }
 }

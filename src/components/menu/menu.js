@@ -3,51 +3,60 @@ import Hibachi from './hibachi'
 import Sauces from './sauces'
 import SushiMenu from './sushi'
 import SpecialKidsSides from './sides'
-import EmptyMenu from './empty-menu'
 import Appetizers from './appetizers'
 
+const CATEGORIES = [
+  { id: 'appetizers',      label: 'Appetizers',  component: Appetizers },
+  { id: 'sushi',           label: 'Sushi',        component: SushiMenu },
+  { id: 'hibachi',         label: 'Hibachi',      component: Hibachi },
+  { id: 'specialKidsSides',label: 'Specials',     component: SpecialKidsSides },
+  { id: 'sauces',          label: 'Sauces',       component: Sauces },
+]
+
 const Menu = () => {
-  const [menuCategory, setMenuCategory] = useState('');
-  let SelectedCategory;
-  if (menuCategory === 'sushi') {
-    SelectedCategory = SushiMenu
-  } 
-  else if (menuCategory === 'specialKidsSides') {
-    SelectedCategory = SpecialKidsSides
-  } 
-  else if (menuCategory === 'hibachi') {
-    SelectedCategory = Hibachi
-  } 
-  else if (menuCategory === 'sauces') {
-    SelectedCategory = Sauces
-  } 
-  else if (menuCategory === 'appetizers') {
-    SelectedCategory = Appetizers
-  }
-  else {
-    SelectedCategory = EmptyMenu
-  }
-  
+  const [active, setActive] = useState('appetizers')
+  const ActiveCategory = CATEGORIES.find(c => c.id === active).component
+
   return (
-    <section className="menu">
-      <h2>OUR MENUS</h2>
-      <ul className="menu-headers">
-        <li className="menu-header" onClick={() => setMenuCategory('appetizers')}>Appetizers</li>
-        <li className="menu-header" onClick={() => setMenuCategory('sushi')}>Sushi</li>
-        <li className="menu-header" onClick={() => setMenuCategory('hibachi')}>Hibachi</li>
-        <li className="menu-header" onClick={() => setMenuCategory('specialKidsSides')}>Specials</li>
-        <li className="menu-header" onClick={() => setMenuCategory('sauces')} >Sauces</li>
-      </ul>
-      <SelectedCategory />
-      <br/>
-      <h2>Order from</h2>
-      <ul className="menu-headers">
-        <li className="menu-header"><a target="_blank" rel="noopener noreferrer" href="https://www.doordash.com/store/Saito-Restaurant-NA-340776/en-US/?ignore_splash_experience=true&utm_source=tripadvisor&utm_medium=partnerships&utm_campaign=CX_US_PA_TA_TA_ACQ_CUSXXX__+340776">Door Dash</a></li>
-        <li className="menu-header"><a target="_blank" rel="noopener noreferrer" href="https://www.grubhub.com/restaurant/saito-restaurant-6600-stage-rd-ste-101-bartlett/1218772?affiliate=1143&utm_source=tripadvisor-affiliate-network&utm_medium=affiliate&utm_campaign=1143&utm_content=1218772">Grubhub</a></li>
-      </ul>
-    
+    <section className="menu" id="menu" aria-label="Restaurant menu">
+      <div className="menu-heading">
+        <h2>Our Menu</h2>
+        <p className="menu-subheading">Fresh ingredients, prepared to order</p>
+      </div>
+
+      <div className="menu-tabs" role="tablist" aria-label="Menu categories">
+        {CATEGORIES.map(({ id, label }) => (
+          <button
+            key={id}
+            role="tab"
+            aria-selected={active === id}
+            className={`menu-tab${active === id ? ' active' : ''}`}
+            onClick={() => setActive(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="menu-content" role="tabpanel">
+        <ActiveCategory />
+      </div>
+
+      <div className="order-section">
+        <h3>Order for Delivery</h3>
+        <div className="order-links">
+          <a
+            className="order-btn doordash"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.doordash.com/store/Saito-Restaurant-NA-340776/en-US/?ignore_splash_experience=true&utm_source=tripadvisor&utm_medium=partnerships&utm_campaign=CX_US_PA_TA_TA_ACQ_CUSXXX__+340776"
+          >
+            DoorDash
+          </a>
+        </div>
+      </div>
     </section>
   )
 }
 
-export default Menu;
+export default Menu

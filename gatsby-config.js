@@ -1,17 +1,15 @@
-const dotenv = require('dotenv')
-
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config()
-}
-
 module.exports = {
   siteMetadata: {
     title: `Saito Restaurant`,
-    description: `Saito Sushi Restaurant in Memphis, TN`,
+    description: `Saito Restaurant — Japanese steakhouse and sushi bar with hibachi grills at three locations in Memphis, Arlington, and Collierville, TN. Dine-in, carry-out, and delivery via DoorDash and Grubhub.`,
     author: `Brian Hoang`,
+    siteUrl: `https://saitorestaurant.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -19,41 +17,18 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Saito Restaurant`,
+        short_name: `Saito`,
         start_url: `/`,
-        background_color: `#4b4f4c`,
-        theme_color: `#4b4f4c`,
+        background_color: `#1a1a1a`,
+        theme_color: `#c8102e`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/gatsby-icon.png`,
       },
     },
     `gatsby-plugin-sass`,
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {  
-        username: `30561691740`, // Your Instagram
-      },
-    },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-react-leaflet',
-      options: {
-        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
-      }
-    }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
