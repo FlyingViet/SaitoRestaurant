@@ -1,3 +1,5 @@
+@use '../variables/variables' as *;
+
 main {
   background-color: $background;
   padding-top: 64px; // offset for fixed header
