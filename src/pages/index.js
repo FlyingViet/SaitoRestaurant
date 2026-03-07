@@ -1,13 +1,21 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Menu from '../components/menu/menu'
-import LeafletMap from '../components/leafletMap'
 import Footer from '../components/footer'
 
-const IndexPage = ({ data }) => (
+const IndexPage = ({ data }) => {
+  const [LeafletMap, setLeafletMap] = useState(null)
+
+  useEffect(() => {
+    import('../components/leafletMap').then(mod => {
+      setLeafletMap(() => mod.default)
+    })
+  }, [])
+
+  return (
   <Layout>
     <SEO
       title="Saito Restaurant — Japanese Steakhouse & Sushi Bar in Memphis, TN"
@@ -53,18 +61,19 @@ const IndexPage = ({ data }) => (
 
     {/* Location */}
     <section id="location" aria-label="Restaurant location">
-      {typeof window !== 'undefined' &&
+      {LeafletMap && (
         <LeafletMap
           position={[35.205189, -89.843314]}
           zoom={12}
           markerText="Saito Restaurant 1 — 6600 Stage Rd #101, Memphis, TN 38134"
         />
-      }
+      )}
     </section>
 
     <Footer />
   </Layout>
-)
+  )
+}
 
 export const pageQuery = graphql`
   query {
