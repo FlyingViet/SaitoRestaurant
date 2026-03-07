@@ -11,10 +11,6 @@ const LOCATIONS = [
     position: [35.20474489378353, -89.73692327346642],
     text: "Saito 2 — 9775 US-64 #103, Arlington, TN 38002",
   },
-  {
-    position: [35.05308958022539, -89.73346294457404],
-    text: "Saito 3 — 2130 W Poplar Suite 107, Collierville, TN 38017",
-  },
 ]
 
 const LeafletMap = ({ position, zoom }) => (

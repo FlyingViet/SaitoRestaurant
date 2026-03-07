@@ -13,12 +13,6 @@ const LOCATIONS = [
     city: "Arlington, TN 38002",
     phone: "(901) 590-2561",
   },
-  {
-    name: "Saito 3 — Collierville",
-    address: "2130 W Poplar, Suite 107",
-    city: "Collierville, TN 38017",
-    phone: "(901) 854-0622",
-  },
 ]
 
 const Footer = () => (
