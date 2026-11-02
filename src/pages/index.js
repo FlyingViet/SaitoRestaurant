@@ -1,43 +1,86 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import Menu from '../components/menu/menu'
-import Footer from '../components/footer'
+import Seo from "../components/seo"
+import StructuredData from "../components/structured-data"
+import Menu from "../components/menu/menu"
+import Locations from "../components/locations"
+import { DOORDASH_URL, HOURS, LOCATIONS, telHref } from "../data/site"
 
-const IndexPage = ({ data }) => {
-  const [LeafletMap, setLeafletMap] = useState(null)
-
-  useEffect(() => {
-    import('../components/leafletMap').then(mod => {
-      setLeafletMap(() => mod.default)
-    })
-  }, [])
-
+// The hero is the LCP element, so render it as a plain, immediately visible
+// <picture> (GatsbyImage keeps it at opacity 0 until a script runs).
+const HeroImage = ({ image, alt }) => {
+  const { sources, fallback } = getImage(image).images
   return (
-  <Layout>
-    <SEO
-      title="Saito Restaurant — Japanese Steakhouse & Sushi Bar in Memphis, TN"
-      description="Saito Restaurant offers authentic Japanese hibachi, sushi, and more at three locations in Memphis, Arlington, and Collierville, TN. Dine-in, carry-out, and delivery available."
-    />
+    <picture>
+      {sources.map(source => (
+        <source key={source.type} {...source} />
+      ))}
+      <img
+        className="hero-image"
+        src={fallback.src}
+        srcSet={fallback.srcSet}
+        sizes={fallback.sizes}
+        alt={alt}
+        fetchpriority="high"
+      />
+    </picture>
+  )
+}
 
+const IndexPage = ({ data }) => (
+  <Layout>
     {/* Hero */}
-    <section className="hero" aria-label="Hero image">
-      <GatsbyImage image={getImage(data.seating)} className="hero-image" alt="Saito Restaurant dining room" />
+    <section className="hero" aria-label="Welcome">
+      <HeroImage image={data.seating} alt="Saito Restaurant dining room" />
       <div className="hero-overlay">
-        <h1>SAITO RESTAURANT</h1>
+        <h1>Saito Restaurant</h1>
         <p>Japanese Steakhouse &amp; Sushi Bar</p>
-        <a href="#menu" className="hero-cta">View Our Menu</a>
+        <p className="hero-locations">Memphis (Bartlett) · Arlington, TN</p>
+        <div className="hero-actions">
+          <a href="#menu" className="hero-cta">View Our Menu</a>
+          <a
+            href={DOORDASH_URL}
+            className="hero-cta hero-cta-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Order Online
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* At-a-glance hours and phone numbers */}
+    <section className="info-bar" aria-label="Hours and phone numbers">
+      <div className="info-item">
+        <span className="info-label">Hours</span>
+        <span className="info-hours">
+          {HOURS.map(h => (
+            <span key={h.label}>
+              {h.label} {h.time}
+            </span>
+          ))}
+        </span>
+      </div>
+      {LOCATIONS.map(loc => (
+        <div key={loc.id} className="info-item">
+          <span className="info-label">{loc.shortName}</span>
+          <a href={telHref(loc.phone)}>{loc.phone}</a>
+        </div>
+      ))}
+      <div className="info-item">
+        <a href="#location" className="info-link">Directions &amp; map →</a>
       </div>
     </section>
 
     {/* About */}
     <section id="about" aria-label="About Saito Restaurant">
       <div className="container about-section">
-        <span className="description">
-          Welcome to Saito Restaurant — an unfussy Japanese steakhouse with multiple hibachi grills, a full sushi bar, dine-in seating, and carry-out. Now at three locations across the Memphis area.
-        </span>
+        <p className="description">
+          Welcome to Saito Restaurant — an unfussy Japanese steakhouse with multiple hibachi grills, a full sushi bar, dine-in seating, and carry-out. Now at two locations across the Memphis area.
+        </p>
 
         <div className="gallery-grid">
           <GatsbyImage image={getImage(data.sushi1)} className="gallery-img1" alt="Sushi roll" />
@@ -59,42 +102,44 @@ const IndexPage = ({ data }) => {
       <Menu />
     </div>
 
-    {/* Location */}
-    <section id="location" aria-label="Restaurant location">
-      {LeafletMap && (
-        <LeafletMap
-          position={[35.205189, -89.843314]}
-          zoom={12}
-          markerText="Saito Restaurant 1 — 6600 Stage Rd #101, Memphis, TN 38134"
-        />
-      )}
-    </section>
-
-    <Footer />
+    <Locations />
   </Layout>
-  )
-}
+)
+
+export const Head = () => (
+  <Seo
+    title="Saito Restaurant | Hibachi & Sushi in Memphis and Arlington, TN"
+    description="Japanese steakhouse with hibachi grills and a full sushi bar in Memphis (Bartlett) and Arlington, TN. See our menu, hours and directions, or order online."
+  >
+    <StructuredData />
+  </Seo>
+)
 
 export const pageQuery = graphql`
   query {
     seating: file(relativePath: { eq: "Seating.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        gatsbyImageData(
+          layout: FULL_WIDTH
+          placeholder: NONE
+          quality: 70
+          breakpoints: [640, 960, 1280, 1600, 1920, 2400]
+        )
       }
     }
     sushi1: file(relativePath: { eq: "Sushi1.JPG" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        gatsbyImageData(layout: CONSTRAINED, width: 900, placeholder: BLURRED, sizes: "(min-width: 640px) 40vw, 90vw")
       }
     }
     sushi2: file(relativePath: { eq: "Sushi2.JPG" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        gatsbyImageData(layout: CONSTRAINED, width: 900, placeholder: BLURRED, sizes: "(min-width: 640px) 40vw, 90vw")
       }
     }
     sushi3: file(relativePath: { eq: "Sushi3.JPG" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, placeholder: BLURRED, sizes: "(min-width: 640px) 55vw, 1px")
       }
     }
   }

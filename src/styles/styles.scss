@@ -3,6 +3,7 @@
 @use './components/header';
 @use './components/menu';
 @use './components/leafletMap';
+@use './components/locations';
 @use './pages/index';
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -19,4 +20,37 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: $charcoal;
   margin-top: 0;
+}
+
+html {
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}
+
+// Keep anchored sections clear of the fixed header
+[id] {
+  scroll-margin-top: 72px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: $white;
+  color: $charcoal;
+  font-weight: 700;
+  border-radius: 4px;
+
+  &:focus {
+    top: 12px;
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid $gold;
+  outline-offset: 2px;
 }

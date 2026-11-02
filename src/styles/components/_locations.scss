@@ -1,0 +1,200 @@
+@use '../variables/variables' as *;
+
+// ── Info bar (under hero) ─────────────────────────────
+.info-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 40px;
+  padding: 18px 24px;
+  background-color: $charcoal;
+  color: rgba(255,255,255,0.85);
+  font-size: $sm-size;
+
+  .info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .info-hours {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 14px;
+
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  .info-label {
+    font-size: $s-size;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $white;
+  }
+
+  a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+
+    &:hover {
+      color: $white;
+      border-color: $white;
+    }
+  }
+
+  .info-link {
+    border-bottom: none;
+    font-weight: 700;
+    color: $white;
+  }
+
+  @media screen and (max-width: 639px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+// ── Locations & Hours ────────────────────────────────
+.locations {
+  padding-top: 80px;
+  border-top: 1px solid $border;
+
+  .section-title {
+    font-size: $xl-size;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+
+.locations-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin-bottom: 60px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  background-color: $white;
+  border: 1px solid $border;
+  border-radius: 8px;
+
+  h3 {
+    font-size: $ml-size;
+    margin: 0;
+  }
+
+  address {
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-size: $m-size;
+    line-height: 1.6;
+    color: $text;
+  }
+}
+
+.location-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: $sm-size;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+  background-color: $red;
+  color: $white;
+  border: 2px solid $red;
+
+  &:hover {
+    background-color: $red-dark;
+    border-color: $red-dark;
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: $charcoal;
+  border: 2px solid $charcoal;
+
+  &:hover {
+    background-color: $charcoal;
+    color: $white;
+  }
+}
+
+.hours-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid $cream-dark;
+    font-size: $m-size;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.is-today {
+      font-weight: 700;
+      color: $charcoal;
+    }
+  }
+}
+
+.today-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background-color: $red;
+  color: $white;
+  font-size: $xs-size;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+
+// ── 404 ──────────────────────────────────────────────
+.not-found {
+  align-items: flex-start;
+  padding: 120px 0;
+
+  .hero-cta {
+    margin-top: 16px;
+  }
+}

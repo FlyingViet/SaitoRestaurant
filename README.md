@@ -1,66 +1,35 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Starter Cafe
-</h1>
+# Saito Restaurant
 
-A single page starter template for cafes utilising Gatsby, Contentful and LeafletJS
+Website for [Saito Restaurant](https://www.saito-restaurant.com), a Japanese steakhouse and sushi bar with hibachi grills in Memphis (Bartlett) and Arlington, TN.
 
-## Demo
+Built with [Gatsby 5](https://www.gatsbyjs.com/) and deployed by Netlify from the `master` branch.
 
-🚀 Here is a [live demo](https://gatsby-starter-cafe.netlify.com/) of the website
-
-These are the Contentful Content Models which make up the menu section of the site:
-
-![Category Image](https://github.com/crolla97/gatsby-starter-cafe/blob/master/src/images/README-1.png)
-![Menu Item Image](https://github.com/crolla97/gatsby-starter-cafe/blob/master/src/images/README-2.png)
-
-## :memo: Getting Started
-Create a ```.env``` file in your root directory:
+## Development
 
 ```shell
-CONTENTFUL_SPACEID=YOUR_SPACE_ID
-CONTENTFUL_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
+npm install
+npm run develop   # http://localhost:8000
+npm run build     # production build in public/
+npm run serve     # serve the production build at http://localhost:9000
 ```
 
-Install dependencies:
-```npm install```
+## Updating content
 
-## :file_folder: Customisation
-To add your instagram username, change the ```gatsby-config.js``` file:
-```js
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `YOUR_INSTAGRAM_USERNAME`,
-      },
-    },
-```
+| What | Where |
+| --- | --- |
+| Locations, phone numbers, hours, email, DoorDash link | `src/data/site.js` |
+| Menu items, prices and notes | `src/data/menu.js` |
+| Page text and photos | `src/pages/index.js`, `src/images/` |
+| Search/social title and description | `gatsby-config.js` (`siteMetadata`) and the `Head` export in `src/pages/index.js` |
 
-To add your business' coordinates onto the map, change the ```index.js``` file:
-```js
-{typeof window !== 'undefined' &&
-      <LeafletMap
-        position={[55.952103, -3.196175]} // Your Coordinates
-        zoom={18} // Zoom Level
-        markerText={"Local Cafe, 65 Park Row"} // Icon text
-      />
-    }
-```
+The footer, the Locations & Hours section, the map and the search-engine structured data all read from `src/data/`, so each detail only needs to be changed in one place.
 
-**IMPORTANT NOTE**: In order for the site to run, Contentful has to set up in exactly as shown in the pictures above. If you want to create different content models then some static queries and files will have to be updated or this will cause an error. These queries can be found in the following files: ```breakfast.js``` ```lunch.js``` ```hotDrinks.js``` ```coldDrink.js```
+## SEO
 
-Any questions or problems please open an issue I'll be happy to help.
+- Page title, description, canonical URL, Open Graph and Twitter card tags come from `src/components/seo.js` (Gatsby Head API).
+- `src/components/structured-data.js` publishes schema.org JSON-LD: the organization, one `Restaurant` per location (address, geo, phone, opening hours) and the full `Menu` with prices.
+- Every menu category is rendered into the static HTML (inactive tabs are `hidden`), so search engines index the whole menu.
+- `gatsby-plugin-sitemap` generates `/sitemap-index.xml`; `static/robots.txt` points crawlers to it.
+- The social sharing image is `static/og-image.jpg` (1200×630). The favicon/app icon is `src/images/saito-icon.png`.
 
-Happy Coding!! :computer:
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar. 
+After content changes, check the live page with Google's [Rich Results Test](https://search.google.com/test/rich-results).
