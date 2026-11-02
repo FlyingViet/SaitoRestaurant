@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
+import { DOORDASH_URL } from "../data/site"
 
 const NAV_LINKS = [
-  { label: "About",    href: "#about" },
-  { label: "Menu",     href: "#menu" },
-  { label: "Location", href: "#location" },
+  { label: "About",     href: "/#about" },
+  { label: "Menu",      href: "/#menu" },
+  { label: "Locations", href: "/#location" },
 ]
 
 const Header = ({ siteTitle }) => {
@@ -13,7 +14,8 @@ const Header = ({ siteTitle }) => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener("scroll", onScroll)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
@@ -33,7 +35,7 @@ const Header = ({ siteTitle }) => {
           ))}
           <li>
             <a
-              href="https://www.doordash.com/store/Saito-Restaurant-NA-340776/en-US/"
+              href={DOORDASH_URL}
               className="nav-order-btn"
               target="_blank"
               rel="noopener noreferrer"
@@ -46,15 +48,17 @@ const Header = ({ siteTitle }) => {
 
       <button
         className={`hamburger${open ? " is-open" : ""}`}
+        type="button"
         aria-label="Toggle navigation"
         aria-expanded={open}
+        aria-controls="mobile-nav"
         onClick={() => setOpen(o => !o)}
       >
         <span /><span /><span />
       </button>
 
       {open && (
-        <nav className="mobile-nav" aria-label="Mobile navigation">
+        <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile navigation">
           <ul>
             {NAV_LINKS.map(({ label, href }) => (
               <li key={label}>
@@ -63,7 +67,7 @@ const Header = ({ siteTitle }) => {
             ))}
             <li>
               <a
-                href="https://www.doordash.com/store/Saito-Restaurant-NA-340776/en-US/"
+                href={DOORDASH_URL}
                 className="nav-order-btn"
                 target="_blank"
                 rel="noopener noreferrer"

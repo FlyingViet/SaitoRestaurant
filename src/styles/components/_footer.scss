@@ -36,6 +36,13 @@ footer {
     margin-bottom: 10px;
   }
 
+  address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
   .footer-location-name {
     font-size: $sm-size;
     font-weight: 600;
@@ -69,7 +76,7 @@ footer {
 
     p {
       font-size: $s-size;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.6);
     }
   }
 }

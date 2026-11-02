@@ -1,10 +1,15 @@
 @use '../variables/variables' as *;
 
+.map-wrap {
+  height: 280px;
+  background-color: $cream-dark;
+  @media screen and (min-width: 1024px) {
+    height: 360px;
+  }
+}
+
 .leaflet-container {
-  height: 200px;
+  height: 100%;
   width: 100%;
   z-index: 0;
-  @media screen and (min-width: 1024px) {
-    height: 300px;
-  }
 } 
